@@ -1,0 +1,215 @@
+\documentclass[paper=letter, fontsize=14pt]{scrartcl} 
+
+\usepackage[usenames]{color}
+\usepackage[utf8]{inputenc}
+%\usepackage{color}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{pictex}  
+\usepackage{multimedia}
+\usepackage{listings}
+\usepackage{vmargin}
+\usepackage{xcolor,colortbl}
+\usepackage[spanish]{babel} % language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{amsbsy}
+\usepackage{amssymb}
+\usepackage{fancyvrb}
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\setpapersize{A4}
+\setmargins{2.5cm}       % margen izquierdo
+{2.4cm}                        % margen superior
+{16.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Centro de Investigaci\'on en Matem\'aticas (CIMAT). Unidad Monterrey} 
+\\ [25pt] 
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge \textbf{Desigualdades.}\\ 
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Ricardo Cruz} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+
+\rhead{\begin{picture}(0,0) \put(-56.7,-50){\includegraphics[width=20mm]{cimat.png}} \end{picture}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\pagestyle{fancy}
+
+\begin{document}
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  basicstyle=\footnotesize, 
+  frame=lrtb,
+  breaklines=true,
+  %frame=L,
+  %xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{red!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{purple},
+}
+
+\lstset{breakatwhitespace=true,
+  basicstyle=\footnotesize, 
+  commentstyle=\color{green},
+  keywordstyle=\color{blue},
+  stringstyle=\color{purple},
+  language=C++,
+  columns=fullflexible,
+  keepspaces=true,
+  breaklines=true,
+  tabsize=3, 
+  showstringspaces=false,
+  extendedchars=true}
+
+\lstset{ %
+  language=R,    
+  basicstyle=\footnotesize, 
+  numbers=left,             
+  numberstyle=\tiny\color{gray}, 
+  stepnumber=1,              
+  numbersep=5pt,             
+  backgroundcolor=\color{white},
+  showspaces=false,             
+  showstringspaces=false,       
+  showtabs=false,               
+  frame=single,                 
+  rulecolor=\color{black},      
+  tabsize=2,                  
+  captionpos=b,               
+  breaklines=true,            
+  breakatwhitespace=false,    
+  title=\lstname,             
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},   
+  escapeinside={\%*}{*)},      
+  morekeywords={*,...}         
+} 
+
+
+\maketitle % Print the title
+
+
+\pagebreak
+
+
+Las desigualdades son una ecuación en la que tenemos una variable que no conocemos y queremos despejar su valor, usualmente se manejan las últimas letras del abecedario para denotar a dichas variables, por ejemplo, $x,y,z$, siendo la más usual $x$.\\
+
+Para despejar el valor de la variable, debemos distinguir primero que depende de la variable y que no. Por ejemplo, si tuvieramos $-4x+5$, entonces, $-4x$ es la parte que depende de la variable, pues explicitamente se encuentra ahí. Mientras que $+5$ solo denota una $\textbf{constante}$\\
+
+Ahora, la técnica usada para despejar la variable es a grandes rasgos, pasar todo lo que dependa de la variable de un lado de la desigualdad ($>,<,\geq,\leq$) y dejar las constantes del otro lado\\
+
+Una estrategia que siempre funciona es ver las desigualdades como una báscula, entonces si vamos a hacer algo de un lado, tenemos que hacerlo del otro, ejemplo:
+
+\begin{eqnarray*}
+5x+3&>&3x-4\\
+5x+3\textcolor{red}{-3x}&>&3x-4\textcolor{red}{-3x}\\
+5x+3\textcolor{red}{-3x}&>&-4\\
+\end{eqnarray*}
+
+En esta desigualdad restamos de ambos lados $-3x$, esto para que del lado derecho se pudiera eliminar con el $3x$ que ya estaba.\\
+
+Esto cuando ya se domina se dice que el $3x$ pasa restando al otro lado, y esto tiene sentido porque al final nos quedo restando del otro lado. Continuemos con ese ejemplo:
+
+\begin{eqnarray*}
+5x+3&>&3x-4\\
+5x+3\textcolor{red}{-3x}&>&3x-4\textcolor{red}{-3x}\\
+5x+3\textcolor{red}{-3x}&>&-4\\
+5x+3\textcolor{red}{-3x}&>&-4\\
+5x+3\textcolor{red}{-3x}\textcolor{green}{-3}&>&-4\textcolor{green}{-3}\\
+5x\textcolor{red}{-3x}&>&-4\textcolor{green}{-3}\\
+\end{eqnarray*}
+
+Ahora sumamos $3$ de cada lado, para poder eliminar el $3$ que ya estaba del lado izquierdo y así quedarnos con las variables de un lado y las constantes del otro.\\
+
+Cuando llegas a este paso es hora de sumar las constantes con constantes y hacer lo mismo con las variables:
+
+\begin{eqnarray*}
+5x+3&>&3x-4\\
+5x+3\textcolor{red}{-3x}&>&3x-4\textcolor{red}{-3x}\\
+5x+3\textcolor{red}{-3x}&>&-4\\
+5x+3\textcolor{red}{-3x}&>&-4\\
+5x+3\textcolor{red}{-3x}\textcolor{green}{-3}&>&-4\textcolor{green}{-3}\\
+5x\textcolor{red}{-3x}&>&-4\textcolor{green}{-3}\\
+8x&>&-7\\
+\end{eqnarray*}
+
+Y por último si la $x$ no nos queda sola, se debe quitar lo que la este multiplicando o dividiendo, haciendo algo similar a lo anterior, si esta multiplicando, pasa dividiendo:
+
+\begin{eqnarray*}
+5x+3&>&3x-4\\
+5x+3\textcolor{red}{-3x}&>&3x-4\textcolor{red}{-3x}\\
+5x+3\textcolor{red}{-3x}&>&-4\\
+5x+3\textcolor{red}{-3x}&>&-4\\
+5x+3\textcolor{red}{-3x}\textcolor{green}{-3}&>&-4\textcolor{green}{-3}\\
+5x\textcolor{red}{-3x}&>&-4\textcolor{green}{-3}\\
+8x&>&-7\\
+\dfrac{8x}{\textcolor{blue}{8}}&>&\dfrac{-7}{\textcolor{blue}{8}}\\
+x&>&\dfrac{-7}{\textcolor{blue}{8}}\\
+\end{eqnarray*}
+
+
+Aplicando lo que vimos arriba a un ejemplo y aplicando lo de, si tienes algo de un lado pasa con su operación inversa, entonces:
+
+
+\begin{eqnarray*} 
+8x-7&>&-4x+5\\
+8x-7+4x&>&+5\\
+8x+4x&>&+5+7\\
+12x&>&12\\
+x&>&\dfrac{12}{12}\\
+x&>&1
+\end{eqnarray*}
+
+Analizandolo rapidamente:
+\begin{itemize}
+\item del primer al segundo renglon se paso el $4x$ sumando
+\item del segundo al tercer renglón se paso el $7$ sumando
+\item del tercer al cuarto renglón se realizaron las operaciones con solo constantes y las operaciones con solo variables
+\item del cuarto al quiento renglón se paso el 12 dividiendo para dejar a la $x$ sola
+\item en el último solo se realizó la división $\dfrac{12}{12}$
+\end{itemize}
+
+
+En general, seguir estos pasos te lleva a resolver las desigualdades, solo que existen algunas reglas más que se tienen que tener en mente, por ejemplo, si pasas dividiendo o multiplicando algo \textbf{negativo}, entonces la desigualdad se invierte
+\end{document}
