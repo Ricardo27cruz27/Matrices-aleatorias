@@ -1,0 +1,163 @@
+\documentclass[paper=letter, fontsize=14pt]{scrartcl} 
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{pictex}  
+\usepackage{multimedia}
+\usepackage{listings}
+\usepackage{vmargin}
+\usepackage{xcolor,colortbl}
+\usepackage[spanish]{babel} % language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{amsbsy}
+\usepackage{amssymb}
+\usepackage{fancyvrb}
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\setpapersize{A4}
+\setmargins{2.5cm}       % margen izquierdo
+{2.4cm}                        % margen superior
+{16.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Centro de Investigaci\'on en Matem\'aticas (CIMAT). Unidad Monterrey} 
+\\ [25pt] 
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge \textbf{Determinante de Vandermonde y ley del semicirculo}\\ 
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Ricardo Cruz} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+
+\rhead{\begin{picture}(0,0) \put(-56.7,-50){\includegraphics[width=20mm]{cimat.png}} \end{picture}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\pagestyle{fancy}
+
+\begin{document}
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  basicstyle=\footnotesize, 
+  frame=lrtb,
+  breaklines=true,
+  %frame=L,
+  %xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{red!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{purple},
+}
+
+\lstset{breakatwhitespace=true,
+  basicstyle=\footnotesize, 
+  commentstyle=\color{green},
+  keywordstyle=\color{blue},
+  stringstyle=\color{purple},
+  language=C++,
+  columns=fullflexible,
+  keepspaces=true,
+  breaklines=true,
+  tabsize=3, 
+  showstringspaces=false,
+  extendedchars=true}
+
+\lstset{ %
+  language=R,    
+  basicstyle=\footnotesize, 
+  numbers=left,             
+  numberstyle=\tiny\color{gray}, 
+  stepnumber=1,              
+  numbersep=5pt,             
+  backgroundcolor=\color{white},
+  showspaces=false,             
+  showstringspaces=false,       
+  showtabs=false,               
+  frame=single,                 
+  rulecolor=\color{black},      
+  tabsize=2,                  
+  captionpos=b,               
+  breaklines=true,            
+  breakatwhitespace=false,    
+  title=\lstname,             
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},   
+  escapeinside={\%*}{*)},      
+  morekeywords={*,...}         
+} 
+
+
+\maketitle % Print the title
+
+
+\pagebreak
+
+\textbf{Ejercicio 1:}\\
+
+Para poder determinar la función de densidad de probabilidad conjunta de los valores propios de una matríz aleatoría, se realiza un cambio de variable, el cual nos lleva a obtener una matriz el determinante de un Jacobiano, la cual se puede expresar como el determinante de Vandermonde. Sin embargo, esto se puede resolver numericamente al perturbar las entradas de la matriz aleatoria.\\
+
+Esto se logra restandole un epsilon a la $ij-esima$ entrada de la matriz simétrica y para mantener la simetría, se le resta también a la $ji-esima entrada$, posterior a esto se calculan los nuevos vectores y valores propios y le perturbación estará dada por la diferencia de los mismos entre el epsilon elegido.\\
+
+Las perturbaciones serán las columnas del Jacobiano y este será aproximadamente igual a $\dfrac{1}{dV(X)}$, donde $dV(X)$ es el determinante de vandermonde de los valores propios de la matriz $H$.\\
+
+Con esto, se muestra que el determinante del Jacobiano para deducir la función de densidad de probabilidad conjunta se puede obtener numericamente mediante diferencias finitas.\\
+
+El código donde se exhibe este calculo se encuentra en la siguiente página \url{https://github.com/Ricardo27cruz27/Matrices-aleatorias}\\
+
+Para una ejecución sin semilla, el resultado del Jacobiano fue $1.324703e+15$. Mientras que Vandermonde arrojo un resultado de $5.978129e+16$
+
+\pagebreak
+
+\textbf{Ejercicio 2:}\\
+
+Finalmente, para calcular el resto de la función de densidad de probabilidad conjunta, es necesario calcular la resolvente, la cual es una integral compleja.\\
+
+Con esta resolvente se puede verificar la ley del semicirculo de Wigner, calculando el resolvente mediante la ley del semicirculo, el resultado debería aproximarse al comportamiento promedio de la resolvente cuando $p$ tiende a infinito ($z\pm\sqrt{z^2-2}$).\\
+
+Para esto se divide en dos casos, el primero cuando $0<\lambda<\sqrt{2}$ y el segundo $0>\lambda>\sqrt{2}$. En ambos casos se toman 10 puntos en este intervalo y se evaluan en la integral y en la resolvente promedio.\\
+
+Para una ejecución sin semilla, la diferencia para el caso 1 fue $-0.2226706+0.2611478i$ y en el segundo caso $-0.838887-2.247249i$. Se puede observar que en ambos casos, la parte real se aproxima a cero, lo cual nos haría pensar en una buena aproximación.\\
+
+El código de este ejercicio se encuentra en la misma dirección especificada anteriormente.
+\end{document}
